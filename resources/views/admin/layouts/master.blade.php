@@ -28,7 +28,6 @@
         <!-- Header-->
 
         @yield('content')
-
     </div><!-- /#right-panel -->
 
     <!-- Right Panel -->
