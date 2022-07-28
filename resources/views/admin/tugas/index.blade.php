@@ -40,7 +40,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">{{ $pagename }}</strong>
+                            <strong class="card-title">Data Table</strong>
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -48,6 +48,8 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Nama</th>
+                                        <th>Kategori</th>
+                                        <th>Keterangan</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -55,8 +57,10 @@
                                     @foreach ($data as $row)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $row->nama_kategori }}</td>
-                                            <td>{{ $row->status_kategori }}</td>
+                                            <td>{{ $row->nama_tugas }}</td>
+                                            <td>{{ $row->id_kategori }}</td>
+                                            <td>{{ $row->ket_tugas }}</td>
+                                            <td>{{ $row->status_tugas }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
