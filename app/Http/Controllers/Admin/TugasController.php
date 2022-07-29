@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\kategori;
 use App\Task;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class TugasController extends Controller
     public function index()
     {
         //
-        $pagename = 'Data Kategori';
+        $pagename = 'Data Tugas';
         $data=Task::all();
         return view('admin.tugas.index', compact('data', 'pagename'));
     }
@@ -29,7 +30,9 @@ class TugasController extends Controller
     public function create()
     {
         //
-        return view('admin.tugas.create');
+        $data_kategori=kategori::all();
+        $pagename  = 'Data Tugas';
+        return view('admin.tugas.create', compact('pagename','data_kategori'));
     }
 
     /**
@@ -40,7 +43,22 @@ class TugasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_tugas'=>'required',
+            'id_kategori'=>'required',
+            'ket_tugas'=>'required',
+            'status_tugas'=>'required',
+        ]);
+
+        $data_tugas = new Task([
+            'nama_tugas'=>$request->get('nama_tugas'),
+            'id_kategori'=>$request->get('id_kategori'),
+            'ket_tugas'=>$request->get('ket_tugas'),
+            'status_tugas'=>$request->get('status_tugas'),
+        ]);
+
+        $data_tugas->save();
+        return redirect('admin/tugas')->with('success', 'tugas berhasil di simpan');
     }
 
     /**
@@ -51,7 +69,7 @@ class TugasController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -62,7 +80,10 @@ class TugasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data_kategori = kategori::all();
+        $pagename = 'Update Tugas';
+        $data = Task::find($id);
+        return view('admin.tugas.edit', compact('data_kategori', 'data', 'pagename'));
     }
 
     /**
@@ -74,8 +95,25 @@ class TugasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama_tugas'=>'required',
+            'id_kategori'=>'required',
+            'ket_tugas'=>'required',
+            'status_tugas'=>'required',
+        ]);
+
+        $tugas=Task::find($id);
+
+        $tugas->nama_tugas = $request->get('nama_tugas');
+        $tugas->id_kategori=$request->get('id_kategori');
+        $tugas->ket_tugas=$request->get('ket_tugas');
+        $tugas->status_tugas=$request->get('status_tugas');
+
+
+        $tugas->save();
+        return redirect('admin/tugas')->with('success', 'tugas berhasil di update');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -85,6 +123,8 @@ class TugasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tugas = Task::find($id);
+        $tugas->delete();
+        return redirect('admin/tugas')->with('success', 'tugas berhasil di hapus');
     }
 }

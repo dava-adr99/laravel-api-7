@@ -53,16 +53,17 @@
                                 </div>
                             @endif
 
-                            <form action="{{ route('tugas.store') }}" method="post" enctype="multipart/form-data"
-                                class="form-horizontal">
+                            <form action="{{ route('tugas.update', $data->id) }}" method="post"
+                                enctype="multipart/form-data" class="form-horizontal">
                                 @csrf
+                                @method('PATCH')
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nama
                                             Tugas</label></div>
 
                                     <div class="col-12 col-md-9"><input type="text" id="text-input" name="nama_tugas"
-                                            placeholder="Masukkan nama tugas" class="form-control"><small
-                                            class="form-text text-muted"></small></div>
+                                            value="{{ $data->nama_tugas }}" placeholder="Masukkan nama tugas"
+                                            class="form-control"><small class="form-text text-muted"></small></div>
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="select" class=" form-control-label">Kategori
@@ -70,7 +71,10 @@
                                     <div class="col-12 col-md-9">
                                         <select name="id_kategori" id="select" class="form-control">
                                             @foreach ($data_kategori as $kategori)
-                                                <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
+                                                <option value="{{ $kategori->id }}"
+                                                    @if ($kategori->id == $data->id_kategori) selected @endif>
+                                                    {{ $kategori->nama_kategori }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -88,10 +92,13 @@
                                         <div class="form-check-inline form-check">
                                             <label for="inline-radio1" class="form-check-label ">
                                                 <input type="radio" id="inline-radio1" name="status_tugas" value="0"
-                                                    class="form-check-input">Maih Berjalan
+                                                    {{ $data->status_tugas == 0 ? 'checked' : '' }}
+                                                    class="form-check-input">Maih
+                                                Berjalan
                                             </label>
                                             <label for="inline-radio2" class="form-check-label ">
                                                 <input type="radio" id="inline-radio2" name="status_tugas" value="1"
+                                                    {{ $data->status_tugas == 0 ? 'checked' : '' }}
                                                     class="form-check-input">Selesai
                                             </label>
                                         </div>
@@ -99,7 +106,7 @@
                                 </div>
                                 <div>
                                     <button type="submit" class="btn btn-primary btn-sm">
-                                        <i class="fa fa-dot-circle-o"></i> Submit
+                                        <i class="fa fa-dot-circle-o"></i> Update
                                     </button>
                                     <button type="reset" class="btn btn-danger btn-sm">
                                         <i class="fa fa-ban"></i> Reset
