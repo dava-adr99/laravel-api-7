@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\API\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
+use illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
     public function register(Request $request){
         $validateData = $request->validate([
-            'nama'=>'required | max:25',
+            'name'=>'required | max:25',
             'email'=>'email | required | unique:users',
             'password'=>'required | confirmed'
         ]);
@@ -21,15 +23,15 @@ class AuthController extends Controller
             'password'=>bcrypt($request->password)
         ]);
 
-        $user->save;
+        $user->save();
 
         return response()->json($user, 201);
     }
 
     public function login(Request $request){
         $validateData = $request->validate([
-            'email'=>'email | required | unique:users',
-            'password'=>'required | confirmed'
+            'email'=>'email | required',
+            'password'=>'required'
         ]);
 
         $login_detail = request(['email', 'password']);
@@ -47,7 +49,7 @@ class AuthController extends Controller
         $token->save();
 
         return response()->json([
-            'access_token'=>$tokenResult->accescToken,
+            'access_token'=>$tokenResult->accessToken,
             'token_id'=>$token->id,
             'user_id'=>$user->id,
             'name'=>$user->name,
