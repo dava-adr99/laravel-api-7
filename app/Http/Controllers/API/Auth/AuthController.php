@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class AuthController extends Controller
 {
     public function register(Request $request){
-        $validateData =$request->validate([
+        $validateData = $request->validate([
             'nama'=>'required | max:25',
             'email'=>'email | required | unique:users',
             'password'=>'required | confirmed'
@@ -24,5 +24,34 @@ class AuthController extends Controller
         $user->save;
 
         return response()->json($user, 201);
+    }
+
+    public function login(Request $request){
+        $validateData = $request->validate([
+            'email'=>'email | required | unique:users',
+            'password'=>'required | confirmed'
+        ]);
+
+        $login_detail = request(['email', 'password']);
+
+        if(!Auth::attempt($login_detail)){
+            return response()->json([
+                'error'=>'login gagal, cek lagi detail login'
+            ], 401);
+        }
+
+        $user = $request->user();
+
+        $tokenResult = $user->createToken('AccessToken');
+        $token = $tokenResult->token;
+        $token->save();
+
+        return response()->json([
+            'access_token'=>$tokenResult->accescToken,
+            'token_id'=>$token->id,
+            'user_id'=>$user->id,
+            'name'=>$user->name,
+            'email'=>$user->email,
+        ], 200);
     }
 }
