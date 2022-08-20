@@ -7,16 +7,19 @@
                 <i class="fa fa-bars"></i>
             </button>
             <a class="navbar-brand" href="./"><img src="{{ asset('images/logo.png') }}" alt="Logo"></a>
-            <a class="navbar-brand hidden" href="./"><img src="{{ asset('images/logo2.png') }}"
-                    alt="Logo"></a>
+            <a class="navbar-brand hidden" href="./"><img src="{{ asset('images/logo2.png') }}" alt="Logo"></a>
         </div>
 
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active">
                     <a href="{{ url('/admin') }}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
-                    <a href="{{ url('/admin/kategori') }}"> <i class="menu-icon fa fa-dashboard"></i>Kategori </a>
-                    <a href="{{ url('/admin/tugas') }}"> <i class="menu-icon fa fa-dashboard"></i>Tugas </a>
+                    <a href="{{ url('/admin/mahasiswa') }}"> <i class="menu-icon fa fa-dashboard"></i>Mahasiswa </a>
+                    <a href="{{ url('/admin/petugas') }}"> <i class="menu-icon fa fa-dashboard"></i>Petugas</a>
+                    <a href="{{ url('/admin/peminjaman') }}"> <i class="menu-icon fa fa-dashboard"></i>Peminjaman </a>
+                    <a href="{{ url('/admin/pengembalian') }}"> <i class="menu-icon fa fa-dashboard"></i>Pengembalian</a>
+                    <a href="{{ url('/admin/buku') }}"> <i class="menu-icon fa fa-dashboard"></i>Buku</a>
+                    <a href="{{ url('/admin/rak') }}"> <i class="menu-icon fa fa-dashboard"></i>Rak</a>
                 </li>
                 <h3 class="menu-title">UI elements</h3><!-- /.menu-title -->
                 <li class="menu-item-has-children dropdown">

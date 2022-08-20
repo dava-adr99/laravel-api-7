@@ -48,7 +48,7 @@
 
                         <div class="card-header">
                             <strong class="card-title">{{ $pagename }}</strong>
-                            <a href="{{ route('tugas.create') }}" class="btn btn-primary pull-right">Tambah</a>
+                            <a href="{{ route('mahasiswa.create') }}" class="btn btn-primary pull-right">Tambah</a>
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
@@ -56,9 +56,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Nama</th>
-                                        <th>Kategori</th>
-                                        <th>Keterangan</th>
-                                        <th>Status</th>
+                                        <th>Alamat</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -66,14 +64,17 @@
                                     @foreach ($data as $row)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $row->nama_tugas }}</td>
-                                            <td>{{ $row->id_kategori }}</td>
-                                            <td>{{ $row->ket_tugas }}</td>
-                                            <td>{{ $row->status_tugas }}</td>
+                                            <td>{{ $row->username }}</td>
+                                            <td>{{ $row->address }}</td>
                                             <td>
-                                                <div class="row"><a href="{{ route('tugas.edit', $row->id) }}"
-                                                        class="btn btn-primary ml-3">Edit</a>
-                                                    <form action="{{ route('tugas.destroy', $row->id) }}" method="post">
+
+                                                <div class="row">
+                                                    <button type="button" class="btn btn-primary ml-3"><a
+                                                            style="color: white"
+                                                            href="{{ route('mahasiswa.edit', $row->id) }}">Edit</a></button>
+
+                                                    <form action="{{ route('mahasiswa.destroy', $row->id) }}"
+                                                        method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button class="btn btn-danger ml-2" type="submit">Hapus</button>

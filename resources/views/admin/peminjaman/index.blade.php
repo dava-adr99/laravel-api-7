@@ -48,17 +48,20 @@
 
                         <div class="card-header">
                             <strong class="card-title">{{ $pagename }}</strong>
-                            <a href="{{ route('tugas.create') }}" class="btn btn-primary pull-right">Tambah</a>
+                            <a href="{{ route('peminjaman.create') }}" class="btn btn-primary pull-right">Tambah</a>
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Nama</th>
-                                        <th>Kategori</th>
-                                        <th>Keterangan</th>
-                                        <th>Status</th>
+                                        <th>Nomor Transaksi</th>
+                                        <th>Nama Peminjam</th>
+                                        <th>NIM Peminjam</th>
+                                        <th>Nama Petugas</th>
+                                        <th>Kode Petugas</th>
+                                        <th>Judul Buku</th>
+                                        <th>Tanggal Transaksi</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -66,14 +69,22 @@
                                     @foreach ($data as $row)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $row->nama_tugas }}</td>
-                                            <td>{{ $row->id_kategori }}</td>
-                                            <td>{{ $row->ket_tugas }}</td>
-                                            <td>{{ $row->status_tugas }}</td>
+                                            <td>{{ $row->nomor_transaksi }}</td>
+                                            <td>{{ $row->nama_peminjam }}</td>
+                                            <td>{{ $row->nim }}</td>
+                                            <td>{{ $row->nama_petugas }}</td>
+                                            <td>{{ $row->kode_petugas }}</td>
+                                            <td>{{ $row->judul_buku }}</td>
+                                            <td>{{ $row->tanggal_transaksi }}</td>
                                             <td>
-                                                <div class="row"><a href="{{ route('tugas.edit', $row->id) }}"
-                                                        class="btn btn-primary ml-3">Edit</a>
-                                                    <form action="{{ route('tugas.destroy', $row->id) }}" method="post">
+
+                                                <div class="row">
+                                                    <button type="button" class="btn btn-primary ml-3"><a
+                                                            style="color: white"
+                                                            href="{{ route('peminjaman.edit', $row->id) }}">Edit</a></button>
+
+                                                    <form action="{{ route('peminjaman.destroy', $row->id) }}"
+                                                        method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button class="btn btn-danger ml-2" type="submit">Hapus</button>

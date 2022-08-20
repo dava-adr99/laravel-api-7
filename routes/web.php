@@ -26,4 +26,10 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'], function(){
     Route::get('/', 'Admin\DashboardController@index');
     Route::resource('/kategori', 'Admin\KategoriController');
     Route::resource('/tugas', 'Admin\TugasController');
+    Route::resource('/mahasiswa', 'Admin\MahasiswaController');
+    Route::resource('/petugas', 'Admin\PetugasController');
+    Route::resource('/peminjaman', 'Admin\PeminjamanController');
+    Route::resource('/pengembalian', 'Admin\PengembalianController');
+    Route::resource('/buku', 'Admin\BukuController');
+    Route::resource('/rak', 'Admin\RakController');
 });
