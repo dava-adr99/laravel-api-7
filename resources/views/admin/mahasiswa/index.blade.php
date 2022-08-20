@@ -55,17 +55,20 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Nama</th>
+                                        <th>Nama Mahasiswa</th>
+                                        <th>Nim</th>
+                                        <th>Jenis Kelamin</th>
                                         <th>Alamat</th>
-                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($data as $row)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $row->username }}</td>
-                                            <td>{{ $row->address }}</td>
+                                            <td>{{ $row->nama_mahasiswa}}</td>
+                                            <td>{{ $row->nim}}</td>
+                                            <td>{{ $row->jenis_kelamin}}</td>
+                                            <td>{{ $row->alamat}}</td>
                                             <td>
 
                                                 <div class="row">
@@ -90,7 +93,6 @@
                     </div>
                 </div>
 
-
             </div>
         </div><!-- .animated -->
     </div><!-- .content -->
@@ -99,7 +101,6 @@
     <script src="{{ asset('vendors/popper.js/dist/umd/popper.min.js') }}"></script>
     <script src="{{ asset('vendors/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
-
 
     <script src="{{ asset('vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>

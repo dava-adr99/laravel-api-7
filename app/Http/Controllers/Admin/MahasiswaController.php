@@ -1,116 +1,96 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\API\Mahasiswa;
 
+use App\Helpers\ApiFormatter;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Mahasiswa;
+use Exception;
 
 class MahasiswaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $pagename = 'Data Mahasiswa';
-        $data=Mahasiswa::all();
-        return view('admin.mahasiswa.index', compact('data', 'pagename'));
+    public function index(){
+        $data = Mahasiswa::all();
+
+        if ($data) {
+            return ApiFormatter::createApi(200, 'Success', $data);
+        } else {
+            return ApiFormatter::createApi(400, 'Failed');
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $pagename  = 'Data Mahasiswa';
-        return view('admin.mahasiswa.create', compact('pagename'));
+    public function store(Request $request){
+        try {
+            $request->validate([
+                'nama_mahasiswa' => 'required',
+                'nim' => 'required',
+                'jenis_kelamin' => 'required',
+                'alamat' => 'required',
+            ]);
+
+            $mahasiswa = Mahasiswa::create([
+                'nama_mahasiswa' => $request->nama_mahaiswa,
+                'nim' => $request->nim,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'alamat' => $request->alamat,
+            ]);
+
+            $data = Mahasiswa::where('id', '=', $mahasiswa->id)->get();
+
+            if ($data) {
+                return ApiFormatter::createApi(200, 'Success', $data);
+            } else {
+                return ApiFormatter::createApi(400, 'Failed');
+            }
+        } catch (Exception $error) {
+            return ApiFormatter::createApi(400, 'Failed');
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'username'=>'required',
-            'address'=>'required',
-        ]);
+    public function update(Request $request, $id){
+        try {
+            $request->validate([
+                'nama_mahasiswa' => 'required',
+                'nim' => 'required',
+                'jenis_kelamin' => 'required',
+                'alamat' => 'required',
+            ]);
 
-        $data_mahasiswa = new Mahasiswa([
-            'username'=>$request->get('username'),
-            'address'=>$request->get('address'),
-        ]);
+            $mahasiswa = Mahasiswa::findOrFail($id);
 
-        $data_mahasiswa->save();
-        return redirect('admin/mahasiswa')->with('success', 'tugas berhasil di simpan');
+            $mahasiswa->update([
+                'nama_mahasiswa' => $request->nama_mahaiswa,
+                'nim' => $request->nim,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'alamat' => $request->alamat,
+            ]);
+
+            $data = Mahasiswa::where('id', '=', $mahasiswa->id)->get();
+
+            if ($data) {
+                return ApiFormatter::createApi(200, 'Success', $data);
+            } else {
+                return ApiFormatter::createApi(400, 'Failed');
+            }
+        } catch (Exception $error) {
+            return ApiFormatter::createApi(400, 'Failed');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    public function destroy($id){
+        try {
+            $mahasiswa = Mahasiswa::findOrFail($id);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $pagename = 'Update Mahasiswa';
-        $data = Mahasiswa::find($id);
-        return view('admin.mahasiswa.edit', compact('data', 'pagename'));
-    }
+            $data = $mahasiswa->delete();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'username'=>'required',
-            'address'=>'required',
-        ]);
-
-        $tugas=Mahasiswa::find($id);
-
-        $tugas->username = $request->get('username');
-        $tugas->address=$request->get('address');
-
-
-        $tugas->save();
-        return redirect('admin/mahasiswa')->with('success', 'mahasiswa berhasil di update');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $tugas = Mahasiswa::find($id);
-        $tugas->delete();
-        return redirect('admin/mahasiswa')->with('success', 'tugas berhasil di hapus');
+            if ($data) {
+                return ApiFormatter::createApi(200, 'Success Destory data');
+            } else {
+                return ApiFormatter::createApi(400, 'Failed');
+            }
+        } catch (Exception $error) {
+            return ApiFormatter::createApi(400, 'Failed');
+        }
     }
 }

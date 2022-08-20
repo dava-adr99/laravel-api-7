@@ -58,19 +58,35 @@
                                 @csrf
                                 @method('PATCH')
                                 <div class="row form-group">
-                                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nama
+                                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nama Mahasiswa
                                         </label></div>
 
-                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="username"
-                                            value="{{ $data->username }}" placeholder="Masukkan nama mahasiswa"
+                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="nama_mahasiswa"
+                                            value="{{ $data->nama_mahasiswa }}" placeholder="Masukkan nama mahasiswa"
+                                            class="form-control"><small class="form-text text-muted"></small></div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="text-input"
+                                            class=" form-control-label">Nim</label></div>
+
+                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="nim"
+                                            value="{{ $data->nim }}" placeholder="Masukkan Nim"
+                                            class="form-control"><small class="form-text text-muted"></small></div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="text-input"
+                                            class=" form-control-label">Jenis Kelamin</label></div>
+
+                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="jenis_kelamin"
+                                            value="{{ $data->jenis_kelamin }}" placeholder="Masukkan Jenis Kelamin"
                                             class="form-control"><small class="form-text text-muted"></small></div>
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="text-input"
                                             class=" form-control-label">Alamat</label></div>
 
-                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="address"
-                                            value="{{ $data->address }}" placeholder="Masukkan alamat lengkap"
+                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="alamat"
+                                            value="{{ $data->alamat }}" placeholder="Masukkan Alamat"
                                             class="form-control"><small class="form-text text-muted"></small></div>
                                 </div>
                                 <div>
@@ -86,7 +102,6 @@
 
                     </div>
                 </div>
-
 
             </div>
         </div><!-- .animated -->

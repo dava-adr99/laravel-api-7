@@ -57,19 +57,36 @@
                                 class="form-horizontal">
                                 @csrf
                                 <div class="row form-group">
-                                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nama
-                                            Mahasiswa</label></div>
+                                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nama Mahasiswa</label></div>
 
-                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="username"
-                                            placeholder="Masukkan nama mahasiswa" class="form-control"><small
+                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="nama_mahasiswa"
+                                            placeholder="Masukkan Nama" class="form-control"><small
                                             class="form-text text-muted"></small></div>
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="text-input"
+                                            class=" form-control-label">Nim</label></div>
+
+                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="nim"
+                                            placeholder="Masukkan Nim" class="form-control"><small
+                                            class="form-text text-muted"></small></div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="text-input"
+                                            class=" form-control-label">Jenis Kelamin</label></div>
+
+                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="jenis_kelamin"
+                                            placeholder="Masukkan Jenis Kelamin" class="form-control"><small
+                                            class="form-text text-muted"></small></div>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="text-input"
                                             class=" form-control-label">Alamat</label></div>
 
-                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="address"
-                                            placeholder="Masukkan alamat lengkap" class="form-control"><small
+                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="alamat"
+                                            placeholder="Masukkan Alamat" class="form-control"><small
                                             class="form-text text-muted"></small></div>
                                 </div>
 
@@ -86,7 +103,6 @@
 
                     </div>
                 </div>
-
 
             </div>
         </div><!-- .animated -->
