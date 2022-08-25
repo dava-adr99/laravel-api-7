@@ -72,13 +72,12 @@
                                             class="form-text text-muted"></small></div>
                                 </div>
 
-                                <div class="row form-group">
-                                    <div class="col col-md-3"><label for="text-input"
-                                            class=" form-control-label">Jenis Kelamin</label></div>
-
-                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="jenis_kelamin"
-                                            placeholder="Masukkan Jenis Kelamin" class="form-control"><small
-                                            class="form-text text-muted"></small></div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Jenis Kelamin</label>
+                                    <select type="text" class="form-control" id="exampleInputJenisKelamin" name="jenis_kelamin" value="{{ old('jenis_kelamin') }}">
+                                      <option>Laki - Laki</option>
+                                      <option>Perempuan</option>
+                                    </select>
                                 </div>
 
                                 <div class="row form-group">
