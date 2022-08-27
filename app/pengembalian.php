@@ -9,7 +9,7 @@ class pengembalian extends Model
     //
     protected $table = 'pengembalian';
     protected $fillable = [
-        'nomor_transaksi',
+        'id_peminjaman',
         'tanggal_pengembalian',
         'keterangan'
     ];

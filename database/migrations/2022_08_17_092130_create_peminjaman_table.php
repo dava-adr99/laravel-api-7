@@ -16,9 +16,9 @@ class CreatePeminjamanTable extends Migration
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->id();
             $table->integer('nomor_transaksi');
-            $table->foreignId('mahasiswa_id');
-            $table->foreignId('petugas_id');
-            $table->foreignId('buku_id');
+            $table->integer('id_mahasiswa');
+            $table->integer('id_petugas');
+            $table->integer('id_buku');
             $table->string('tanggal_transaksi');
             $table->timestamps();
         });

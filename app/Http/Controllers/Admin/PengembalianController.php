@@ -5,19 +5,24 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\pengembalian;
+use App\peminjaman;
+
 class PengembalianController extends Controller
 {
     public function index()
     {
         $pagename = 'Data Pengembalian';
-        $data=pengembalian::all();
+        $data =  pengembalian::join('peminjaman', 'pengembalian.id_peminjaman', '=', 'peminjaman.id')
+               ->get(['pengembalian.*', 'peminjaman.nomor_transaksi']);
         return view('admin.pengembalian.index', compact('data', 'pagename'));
     }
 
     public function create()
     {
         $pagename  = 'Tambahkan Data Pengembalian';
-        return view('admin.pengembalian.create', compact('pagename'));
+        //menampung semua data di dalam tabel peminjaman 
+        $data_peminjaman = peminjaman::all();
+        return view('admin.pengembalian.create', compact('pagename', 'data_peminjaman'));
     }
 
     /**
@@ -29,13 +34,13 @@ class PengembalianController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nomor_transaksi'=>'required',
+            'id_peminjaman'=>'required',
             'tanggal_pengembalian'=>'required',
             'keterangan'=>'required',
         ]);
 
         $data_pengembalian = new pengembalian([
-            'nomor_transaksi'=>$request->get('nomor_transaksi'),
+            'id_peminjaman'=>$request->get('id_peminjaman'),
             'tanggal_pengembalian'=>$request->get('tanggal_pengembalian'),
             'keterangan'=>$request->get('keterangan'),
         ]);
@@ -66,7 +71,8 @@ class PengembalianController extends Controller
     {
         $pagename = 'Update Pengembalian';
         $data = pengembalian::find($id);
-        return view('admin.pengembalian.edit', compact('data', 'pagename'));
+        $data_peminjaman = peminjaman::all();
+        return view('admin.pengembalian.edit', compact('data', 'pagename', 'data_peminjaman'));
     }
 
     /**
@@ -79,14 +85,14 @@ class PengembalianController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nomor_transaksi'=>'required',
+            'id_peminjaman'=>'required',
             'tanggal_pengembalian'=>'required',
             'keterangan'=>'required',
         ]);
 
         $tugas=pengembalian::find($id);
 
-        $tugas->nomor_transaksi = $request->get('nomor_transaksi');
+        $tugas->id_peminjaman = $request->get('id_peminjaman');
         $tugas->tanggal_pengembalian = $request->get('tanggal_pengembalian');
         $tugas->keterangan = $request->get('keterangan');
 
@@ -104,6 +110,6 @@ class PengembalianController extends Controller
     {
         $tugas = pengembalian::find($id);
         $tugas->delete();
-        return redirect('admin/mahasiswa')->with('success', 'tugas berhasil di hapus');
+        return redirect('admin/pengembalian')->with('success', 'tugas berhasil di hapus');
     }
 }

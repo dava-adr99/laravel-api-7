@@ -10,11 +10,9 @@ class peminjaman extends Model
     protected $table = 'peminjaman';
     protected $fillable = [
         'nomor_transaksi',
-        'nama_peminjam',
-        'nim',
-        'nama_petugas',
-        'kode_petugas',
-        'judul_buku',
+        'id_mahasiswa',
+        'id_petugas',
+        'id_buku',
         'tanggal_transaksi'
     ];
 }

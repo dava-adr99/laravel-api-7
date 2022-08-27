@@ -21,6 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/auth/register','Api\Auth\AuthController@register');
 Route::post('/auth/login','Api\Auth\AuthController@login');
 
+//mahasiswa
 Route::get('mahasiswa', 'Api\Mahasiswa\MahasiswaController@index');
 Route::post('mahasiswa/store', 'Api\Mahasiswa\MahasiswaController@store');
 Route::post('mahasiswa/update/{id}', 'Api\Mahasiswa\MahasiswaController@update');

@@ -58,12 +58,14 @@
                                 @csrf
                                 @method('PATCH')
                                 <div class="row form-group">
-                                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">judul buku
-                                        </label></div>
-
-                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="judul_buku"
-                                            value="{{ $data->username }}" placeholder="Masukkan judul buku"
-                                            class="form-control"><small class="form-text text-muted"></small></div>
+                                    <div class="col col-md-3"><label for="text-input"
+                                            class=" form-control-label">Judul Buku</label>
+                                    </div>
+                                    <select name="id_buku" id="select" class="form-control col-12 col-md-3 ml-3">
+                                        @foreach ($data_buku as $buku)
+                                            <option value="{{ $buku->id }}">{{ $buku->judul_buku }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="text-input"

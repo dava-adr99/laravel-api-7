@@ -39,16 +39,17 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
+        // yang mengatur validasi
         $request->validate([
             'nama_mahasiswa'=>'required',
-            'nim'=>'required',
+            'nim'=>'required|unique:mahasiswa',
             'jenis_kelamin'=>'required',
             'alamat'=>'required',
         ]);
 
         $data_mahasiswa = new Mahasiswa([
             'nama_mahasiswa'=>$request->get('nama_mahasiswa'),
-            'nim'=>$request->get('nim')->unique,
+            'nim'=>$request->get('nim'),
             'jenis_kelamin'=>$request->get('jenis_kelamin'),
             'alamat'=>$request->get('alamat'),
         ]);

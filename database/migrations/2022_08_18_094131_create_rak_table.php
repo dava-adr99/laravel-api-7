@@ -15,7 +15,7 @@ class CreateRakTable extends Migration
     {
         Schema::create('rak', function (Blueprint $table) {
             $table->id();
-            $table->string('judul_buku');
+            $table->integer('id_buku');
             $table->integer('stok');
             $table->timestamps();
         });

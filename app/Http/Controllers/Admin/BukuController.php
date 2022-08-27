@@ -30,7 +30,7 @@ class BukuController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'judul_buku'=>'required',
+            'judul_buku'=>'required|unique:buku|max:255',
             'nama_pengarang'=>'required',
             'tahun_terbit'=>'required',
             

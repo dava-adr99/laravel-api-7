@@ -57,12 +57,15 @@
                                 class="form-horizontal">
                                 @csrf
                                 <div class="row form-group">
-                                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nomor
-                                            Transaksi</label></div>
-
-                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="nomor_transaksi"
-                                            placeholder="Masukkan Nomor Transaksi" class="form-control"><small
-                                            class="form-text text-muted"></small></div>
+                                    <div class="col col-md-3"><label for="text-input"
+                                            class=" form-control-label">Nomor Transaksi</label>
+                                    </div>
+                                    <select name="id_peminjaman" id="select" class="form-control col-12 col-md-3 ml-3">
+                                        <!-- looping array -->
+                                        @foreach ($data_peminjaman as $peminjaman)
+                                            <option value="{{ $peminjaman->id }}">{{ $peminjaman->nomor_transaksi }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="text-input"

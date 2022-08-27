@@ -65,44 +65,38 @@
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="text-input"
-                                            class=" form-control-label">Nama Peminjam</label></div>
-
-                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="nama_peminjam"
-                                            placeholder="Masukkan Nama Lengkap Peminjam" class="form-control"><small
-                                            class="form-text text-muted"></small></div>
+                                            class=" form-control-label">Nama Peminjam</label>
+                                    </div>
+                                    <select name="id_mahasiswa" id="select" class="form-control col-12 col-md-3 ml-3">
+                                        @foreach ($data_mahasiswa as $mahasiswa)
+                                            <option value="{{ $mahasiswa->id }}">{{ $mahasiswa->nama_mahasiswa }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
+
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="text-input"
-                                            class=" form-control-label">NIM Peminjam</label></div>
-
-                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="nim"
-                                            placeholder="Masukkan NIM Lengkap Peminjam" class="form-control"><small
-                                            class="form-text text-muted"></small></div>
+                                            class=" form-control-label">Nama Petugas</label>
+                                    </div>
+                                    <select name="id_petugas" id="select" class="form-control col-12 col-md-3 ml-3">
+                                        @foreach ($data_petugas as $petugas)
+                                            <option value="{{ $petugas->id }}">{{ $petugas->nama_petugas }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
+
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="text-input"
-                                            class=" form-control-label">Nama Petugas</label></div>
-
-                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="nama_petugas"
-                                            placeholder="Masukkan Nama Lengkap Petugas" class="form-control"><small
-                                            class="form-text text-muted"></small></div>
+                                            class=" form-control-label">Judul Buku</label>
+                                    </div>
+                                    <select name="id_buku" id="select" class="form-control col-12 col-md-3 ml-3">
+                                        @foreach ($data_buku as $buku)
+                                            <option value="{{ $buku->id }}">{{ $buku->judul_buku }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3"><label for="text-input"
-                                            class=" form-control-label">Kode Petugas</label></div>
-
-                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="kode_petugas"
-                                            placeholder="Masukkan Kode Petugas" class="form-control"><small
-                                            class="form-text text-muted"></small></div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3"><label for="text-input"
-                                            class=" form-control-label">Judul Buku</label></div>
-
-                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="judul_buku"
-                                            placeholder="Masukkan Judul Buku Yang Di Pinjajm" class="form-control"><small
-                                            class="form-text text-muted"></small></div>
-                                </div>
+        
+                                
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="text-input"
                                             class=" form-control-label">Tanggal Transaksi</label></div>

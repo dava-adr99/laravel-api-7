@@ -9,7 +9,7 @@ class rak extends Model
     //
     protected $table = 'rak';
     protected $fillable = [
-        'judul_buku',
+        'id_buku',
         'stok'
     ];
 

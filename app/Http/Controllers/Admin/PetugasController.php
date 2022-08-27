@@ -31,7 +31,7 @@ class PetugasController extends Controller
     {
         $request->validate([
             'nama_petugas'=>'required',
-            'kode_petugas'=>'required',
+            'kode_petugas'=>'required|unique:petugas',
             'jenis_kelamin'=>'required',
             
         ]);

@@ -15,7 +15,7 @@ class CreatePengembalianTable extends Migration
     {
         Schema::create('pengembalian', function (Blueprint $table) {
             $table->id();
-            $table->integer('nomor_transaksi');
+            $table->integer('id_peminjaman');
             $table->string('tanggal_pengembalian');
             $table->string('keterangan');
             $table->timestamps();

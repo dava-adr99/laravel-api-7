@@ -23,13 +23,17 @@ class MahasiswaController extends Controller
     public function store(Request $request){
         try {
             $request->validate([
-                'username' => 'required',
-                'address' => 'required',
+                'nama_mahasiswa'=>'required',
+                'nim'=>'required|unique:mahasiswa',
+                'jenis_kelamin'=>'required',
+                'alamat'=>'required',
             ]);
 
             $mahasiswa = Mahasiswa::create([
-                'username' => $request->username,
-                'address' => $request->address
+                'nama_mahasiswa' => $request->nama_mahasiswa,
+                'nim' => $request->nim,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'alamat' => $request->alamat,
             ]);
 
             $data = Mahasiswa::where('id', '=', $mahasiswa->id)->get();
@@ -47,16 +51,18 @@ class MahasiswaController extends Controller
     public function update(Request $request, $id){
         try {
             $request->validate([
-                'username' => 'required',
-                'address' => 'required',
+                'nama_mahasiswa'=>'required',
+                'jenis_kelamin'=>'required',
+                'alamat'=>'required',
             ]);
 
 
             $mahasiswa = Mahasiswa::findOrFail($id);
 
             $mahasiswa->update([
-                'username' => $request->username,
-                'address' => $request->address
+                'nama_mahasiswa' => $request->nama_mahasiswa,
+                'jenis_kelamin' => $request->jenis_kelamin,
+                'alamat' => $request->alamat,
             ]);
 
             $data = Mahasiswa::where('id', '=', $mahasiswa->id)->get();

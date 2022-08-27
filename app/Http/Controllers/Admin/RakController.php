@@ -5,20 +5,25 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Rak;
+use App\buku;
 
 class RakController extends Controller
 {
     public function index()
     {
         $pagename = 'Data Rak';
-        $data=Rak::all();
+        //$data=Rak::all();
+        $data =  rak::join('buku', 'rak.id_buku', '=', 'buku.id')
+               ->get(['rak.*', 'buku.judul_buku']);
+            
         return view('admin.rak.index', compact('data', 'pagename'));
     }
 
     public function create()
     {
         $pagename  = 'Tambahkan Data';
-        return view('admin.rak.create', compact('pagename'));
+        $data_buku = buku::all();
+        return view('admin.rak.create', compact('pagename','data_buku'));
     }
 
     /**
@@ -30,13 +35,13 @@ class RakController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'judul_buku'=>'required',
+            'id_buku'=>'required',
             'stok'=>'required',
            
         ]);
 
         $data_rak = new Rak([
-            'judul_buku'=>$request->get('judul_buku'),
+            'id_buku'=>$request->get('id_buku'),
             'stok'=>$request->get('stok'),
         ]);
 
@@ -66,7 +71,8 @@ class RakController extends Controller
     {
         $pagename = 'Update Rak';
         $data = Rak::find($id);
-        return view('admin.rak.edit', compact('data', 'pagename'));
+        $data_buku = buku::all();
+        return view('admin.rak.edit', compact('data', 'pagename','data_buku'));
     }
 
     /**
@@ -79,13 +85,13 @@ class RakController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'judul_buku'=>'required',
+            'id_buku'=>'required',
             'stok'=>'required',
         ]);
 
         $tugas=Rak::find($id);
 
-        $tugas->judul_buku = $request->get('judul_buku');
+        $tugas->id_buku = $request->get('id_buku');
         $tugas->stok=$request->get('stok');
 
         $tugas->save();

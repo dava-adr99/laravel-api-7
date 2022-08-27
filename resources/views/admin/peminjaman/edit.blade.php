@@ -53,24 +53,51 @@
                                 </div>
                             @endif
 
-                            <form action="{{ route('mahasiswa.update', $data->id) }}" method="post"
+                            <form action="{{ route('peminjaman.update', $data->id) }}" method="post"
                                 enctype="multipart/form-data" class="form-horizontal">
                                 @csrf
                                 @method('PATCH')
-                                <div class="row form-group">
-                                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nama
-                                        </label></div>
+                                
 
-                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="username"
-                                            value="{{ $data->username }}" placeholder="Masukkan nama mahasiswa"
-                                            class="form-control"><small class="form-text text-muted"></small></div>
-                                </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3"><label for="text-input"
-                                            class=" form-control-label">Alamat</label></div>
+                                            class=" form-control-label">Nama Peminjam</label>
+                                    </div>
+                                    <select name="id_mahasiswa" id="select" class="form-control col-12 col-md-3 ml-3">
+                                        @foreach ($data_mahasiswa as $mahasiswa)
+                                            <option value="{{ $mahasiswa->id }}">{{ $mahasiswa->nama_mahasiswa }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
-                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="address"
-                                            value="{{ $data->address }}" placeholder="Masukkan alamat lengkap"
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="text-input"
+                                            class=" form-control-label">Nama Petugas</label>
+                                    </div>
+                                    <select name="id_petugas" id="select" class="form-control col-12 col-md-3 ml-3">
+                                        @foreach ($data_petugas as $petugas)
+                                            <option value="{{ $petugas->id }}">{{ $petugas->nama_petugas }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="text-input"
+                                            class=" form-control-label">Judul Buku</label>
+                                    </div>
+                                    <select name="id_buku" id="select" class="form-control col-12 col-md-3 ml-3">
+                                        @foreach ($data_buku as $buku)
+                                            <option value="{{ $buku->id }}">{{ $buku->judul_buku }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="row form-group">
+                                    <div class="col col-md-3"><label for="text-input"
+                                            class=" form-control-label">Tanggal Transaksi</label></div>
+
+                                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="tanggal_transaksi"
+                                            value="{{ $data->tanggal_transaksi }}" placeholder="Masukkan tanggal transaksi"
                                             class="form-control"><small class="form-text text-muted"></small></div>
                                 </div>
                                 <div>
